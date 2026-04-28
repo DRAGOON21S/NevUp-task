@@ -100,8 +100,12 @@ npm.cmd run k6:write
 
 Required System of Record URL:
 
-- Upload `reports/k6-trades-report.html` to a public URL.
-- Paste that URL into the k6/Locust HTML report field.
+- Paste this URL into the k6/Locust HTML report field:
+
+```text
+https://nevup-k6-report.vercel.app/k6-trades-report
+```
+
 - Latest local file generated: `reports/k6-trades-report.html`.
 
 Clean synthetic load data:

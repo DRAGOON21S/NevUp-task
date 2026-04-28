@@ -84,12 +84,16 @@ k6 read report result:
 
 Pending for System of Record:
 
-- Upload `reports/k6-trades-report.html` to a public URL.
+- Public k6 write report URL:
+
+```text
+https://nevup-k6-report.vercel.app/k6-trades-report
+```
 
 Recommended System of Record URL target:
 
 ```text
-https://YOUR-GITHUB-USERNAME.github.io/YOUR-REPO/reports/k6-trades-report.html
+https://nevup-k6-report.vercel.app/k6-trades-report
 ```
 
 ## Cleanup Proof

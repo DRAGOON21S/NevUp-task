@@ -143,7 +143,13 @@ $env:NEVUP_K6_SESSION_COUNT='100'
 npm.cmd run k6:write
 ```
 
-This writes `reports/k6-trades-report.html`. Upload that HTML file to a public URL and paste the URL into the System of Record.
+This writes `reports/k6-trades-report.html`.
+
+Public System of Record k6 report URL:
+
+```text
+https://nevup-k6-report.vercel.app/k6-trades-report
+```
 
 Latest generated k6 reports:
 

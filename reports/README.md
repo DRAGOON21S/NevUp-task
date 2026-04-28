@@ -14,7 +14,13 @@ npm.cmd run k6:write
 npm.cmd run k6:read
 ```
 
-The System of Record asks for a URL. Upload the generated HTML report to a public location, for example:
+The System of Record asks for a URL. Current public write report:
+
+```text
+https://nevup-k6-report.vercel.app/k6-trades-report
+```
+
+For future uploads, publish the generated HTML report to a public location, for example:
 
 - GitHub Pages
 - a Render static site

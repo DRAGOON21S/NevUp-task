@@ -92,7 +92,13 @@ npm.cmd run k6:read
 
 The report files are generated locally under `reports/`.
 
-For the required URL, upload one HTML report publicly. Recommended:
+Public report URL for the required System of Record field:
+
+```text
+https://nevup-k6-report.vercel.app/k6-trades-report
+```
+
+For future report redeploys, upload one HTML report publicly. Recommended:
 
 1. Use `reports/k6-trades-report.html` as the System of Record report because it proves the 200 close-events/sec target.
 2. Upload it to GitHub Pages, Render Static Site, Netlify, Vercel, or Google Drive with public sharing.

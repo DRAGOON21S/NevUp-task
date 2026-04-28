@@ -1,25 +1,56 @@
 services:
   postgres:
-    image: postgres:15
+    image: postgres:16-alpine
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: nevup_db
+      POSTGRES_USER: nevup
+      POSTGRES_PASSWORD: nevup
+      POSTGRES_DB: nevup
     ports:
       - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nevup -d nevup"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
 
   redis:
     image: redis:7-alpine
-    [cite_start]command: ["redis-server", "--appendonly", "yes"] # Persistence is key [cite: 134]
+    command: ["redis-server", "--appendonly", "yes"]
     ports:
       - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
 
-  api:
+  db-migrate:
     build: .
-    ports:
-      - "8080:8080"
+    command: ["npm", "run", "migrate"]
+    environment:
+      DATABASE_URL: postgres://nevup:nevup@postgres:5432/nevup
     depends_on:
-      - postgres
-      - redis
-    env_file:
-      - .env
+      postgres:
+        condition: service_healthy
+    profiles: ["tools"]
+
+  db-seed:
+    build: .
+    command: ["npm", "run", "seed"]
+    environment:
+      DATABASE_URL: postgres://nevup:nevup@postgres:5432/nevup
+      SEED_CSV_PATH: /app/data/nevup_seed_dataset.csv
+    depends_on:
+      postgres:
+        condition: service_healthy
+      db-migrate:
+        condition: service_completed_successfully
+    profiles: ["tools"]
+
+volumes:
+  postgres-data:
+  redis-data:

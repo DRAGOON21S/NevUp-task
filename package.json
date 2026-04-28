@@ -6,8 +6,10 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "start": "node dist/api/server.js",
+    "start:railway": "node dist/db/migrate.js && node dist/db/seed.js && node dist/api/server.js",
     "dev": "npm run build && node dist/api/server.js",
     "worker": "node dist/worker/analyticsWorker.js",
+    "worker:railway": "node dist/worker/analyticsWorker.js",
     "dev:worker": "npm run build && node dist/worker/analyticsWorker.js",
     "loadtest:trades": "npm run build && node dist/loadtest/trades.js",
     "loadtest:reads": "npm run build && node dist/loadtest/reads.js",

@@ -104,7 +104,13 @@ Verified database state:
 
 ## Deployment Readiness
 
-Render Blueprint:
+Railway config:
+
+- `railway.api.toml`
+- `railway.worker.toml`
+- `docs/railway.md`
+
+Render fallback:
 
 - `render.yaml`
 

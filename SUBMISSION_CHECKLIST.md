@@ -8,6 +8,7 @@ Use this before packaging or demoing the project.
 - `DECISIONS.md`
 - `docs/performance.md`
 - `docs/deployment.md`
+- `docs/railway.md`
 - `docs/demo-script.md`
 - `docs/final-evidence.md`
 - `docs/k6-reporting.md`
@@ -16,6 +17,8 @@ Use this before packaging or demoing the project.
 - `data/nevup_seed_dataset.csv`
 - `data/nevup_seed_dataset.json`
 - `render.yaml`
+- `railway.api.toml`
+- `railway.worker.toml`
 
 ## Local Verification
 
@@ -102,9 +105,16 @@ npm.cmd run loadtest:cleanup
 7. Show `DECISIONS.md` performance evidence.
 8. Show the public k6 HTML report URL.
 
-## Deployed Verification
+## Railway Deployment
 
-After Render is live:
+Create Railway services:
+
+- Postgres
+- Redis
+- API service using `/railway.api.toml`
+- Worker service using `/railway.worker.toml`
+
+After Railway is live:
 
 ```powershell
 $env:DEPLOY_BASE_URL='https://YOUR-API-URL'

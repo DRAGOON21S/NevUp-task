@@ -12,4 +12,4 @@ COPY data ./data
 
 RUN npm run build
 
-CMD ["node", "dist/db/migrate.js"]
+CMD ["npm", "run", "start"]

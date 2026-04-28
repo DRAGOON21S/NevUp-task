@@ -15,7 +15,8 @@ The service ingests the provided trade seed dataset, exposes the required OpenAP
 - Structured JSON errors with trace IDs
 - Load tools for write/read performance targets
 - Integration test covering the required endpoint surface
-- Render Blueprint for deploy
+- Railway deployment configs
+- Render Blueprint fallback
 
 ## Required Endpoints
 
@@ -87,7 +88,7 @@ Judge demo script:
 npm.cmd run demo:judge
 ```
 
-Deployment smoke after Render is live:
+Deployment smoke after Railway is live:
 
 ```powershell
 $env:DEPLOY_BASE_URL='https://YOUR-API-URL'
@@ -160,6 +161,7 @@ More detail is in `docs/performance.md`.
 - `DECISIONS.md`: architecture and tradeoff notes.
 - `docs/performance.md`: load-test commands and latest evidence.
 - `docs/deployment.md`: Render deployment notes.
+- `docs/railway.md`: Railway deployment steps.
 - `docs/demo-script.md`: live demo flow.
 - `docs/final-evidence.md`: final proof points.
 - `docs/k6-reporting.md`: k6 HTML report generation and hosting steps.

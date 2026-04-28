@@ -31,6 +31,23 @@ The service ingests the provided trade seed dataset, exposes the required OpenAP
 
 ## Quick Start
 
+One-command Docker startup:
+
+```powershell
+$env:PATH = 'C:\Program Files\Docker\Docker\resources\bin;' + $env:PATH
+& 'C:\Program Files\Docker\Docker\resources\bin\docker.exe' compose up --build
+```
+
+This starts Postgres, Redis, migration, seed, API, and analytics worker.
+
+Health check:
+
+```powershell
+Invoke-RestMethod -Uri http://localhost:4010/health | ConvertTo-Json -Depth 5
+```
+
+Manual local startup:
+
 Install dependencies:
 
 ```powershell

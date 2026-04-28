@@ -122,3 +122,43 @@ npm.cmd run smoke:deploy
 ```
 
 The deploy smoke checks health, seed reads, metrics, profile, and idempotent write behavior.
+
+## Railway Deployment Verification
+
+Railway API URL:
+
+```text
+https://nevup-api-production.up.railway.app
+```
+
+Health check:
+
+- `GET /health`
+- status `200`
+- response status `ok`
+- database `connected`
+
+Deploy smoke:
+
+- command: `npm.cmd run smoke:deploy`
+- base URL: `https://nevup-api-production.up.railway.app`
+- result: passed
+- checks:
+  - `GET /health` -> `200`
+  - `GET /trades/9c967550-357f-4bfb-9726-c8b863e968ce` -> `200`
+  - `GET /sessions/4f39c2ea-8687-41f7-85a0-1fafd3e976df` -> `200`
+  - `GET /users/f412f236-4edc-47a2-8f54-8763a6ed2ce8/metrics` -> `200`
+  - `GET /users/f412f236-4edc-47a2-8f54-8763a6ed2ce8/profile` -> `200`
+  - duplicate `POST /trades` -> `200`, `200`
+- synthetic deployment smoke trade: `c7e2b0bc-a3e0-4150-94a6-745804884d77`
+- synthetic deployment smoke session: `be2fe178-641b-4ecf-ab72-bc4dc17782d9`
+
+Tiny deployed write smoke:
+
+- `LOAD_RPS=2`
+- `LOAD_DURATION_SECONDS=1`
+- `LOAD_CONCURRENCY=2`
+- completed `2`
+- errors `0`
+- p95 `758ms`
+- synthetic load-test session: `fceba288-5523-4c91-a619-bffe9fa4be26`

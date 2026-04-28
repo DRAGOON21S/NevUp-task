@@ -36,7 +36,6 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    profiles: ["tools"]
 
   db-seed:
     build: .
@@ -49,7 +48,6 @@ services:
         condition: service_healthy
       db-migrate:
         condition: service_completed_successfully
-    profiles: ["tools"]
 
   api:
     build: .
@@ -59,6 +57,8 @@ services:
       REDIS_URL: redis://redis:6379
       PORT: 4010
       JWT_SECRET: 97791d4db2aa5f689c3cc39356ce35762f0a73aa70923039d8ef72a2840a1b02
+      POOL_MAX: 50
+      REQUEST_LOG_SAMPLE_RATE: 0.01
     ports:
       - "4010:4010"
     depends_on:
@@ -66,7 +66,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-    profiles: ["app"]
+      db-seed:
+        condition: service_completed_successfully
 
   analytics-worker:
     build: .
@@ -75,12 +76,14 @@ services:
       DATABASE_URL: postgres://nevup:nevup@postgres:5432/nevup
       REDIS_URL: redis://redis:6379
       WORKER_BATCH_SIZE: 50
+      POOL_MAX: 20
     depends_on:
       postgres:
         condition: service_healthy
       redis:
         condition: service_healthy
-    profiles: ["app"]
+      db-seed:
+        condition: service_completed_successfully
 
 volumes:
   postgres-data:

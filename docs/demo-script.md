@@ -4,7 +4,14 @@ Use this flow for a short live walkthrough.
 
 ## Setup
 
-Start dependencies, API, and worker:
+Start everything with one Docker command:
+
+```powershell
+$env:PATH = 'C:\Program Files\Docker\Docker\resources\bin;' + $env:PATH
+& 'C:\Program Files\Docker\Docker\resources\bin\docker.exe' compose up --build
+```
+
+Manual alternative:
 
 ```powershell
 $env:PATH = 'C:\Program Files\Docker\Docker\resources\bin;' + $env:PATH

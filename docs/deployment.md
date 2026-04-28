@@ -30,6 +30,12 @@ After deploy, verify:
 Invoke-RestMethod -Uri https://YOUR-API-URL/health | ConvertTo-Json -Depth 5
 ```
 
+Current Railway API URL:
+
+```text
+https://nevup-api-production.up.railway.app
+```
+
 Then run a small authenticated smoke against the live URL:
 
 ```powershell

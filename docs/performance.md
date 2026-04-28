@@ -12,6 +12,13 @@ $env:PATH = 'C:\Program Files\Docker\Docker\resources\bin;' + $env:PATH
 & 'C:\Program Files\Docker\Docker\resources\bin\docker.exe' compose up -d postgres redis
 ```
 
+Or start the full stack with one command:
+
+```powershell
+$env:PATH = 'C:\Program Files\Docker\Docker\resources\bin;' + $env:PATH
+& 'C:\Program Files\Docker\Docker\resources\bin\docker.exe' compose up --build
+```
+
 Start the API and worker from separate terminals. For load runs, lower request log sampling so console I/O does not dominate latency:
 
 ```powershell

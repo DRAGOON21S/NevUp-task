@@ -27,6 +27,22 @@ npm.cmd install
 npm.cmd run build
 ```
 
+One-command Docker startup:
+
+```powershell
+$env:PATH = 'C:\Program Files\Docker\Docker\resources\bin;' + $env:PATH
+& 'C:\Program Files\Docker\Docker\resources\bin\docker.exe' compose up --build
+```
+
+This starts:
+
+- Postgres
+- Redis
+- migration job
+- seed job
+- API
+- analytics worker
+
 Start dependencies:
 
 ```powershell
@@ -119,6 +135,12 @@ After Railway is live:
 ```powershell
 $env:DEPLOY_BASE_URL='https://YOUR-API-URL'
 npm.cmd run smoke:deploy
+```
+
+Current verified Railway API URL:
+
+```text
+https://nevup-api-production.up.railway.app
 ```
 
 For a deployed write smoke:

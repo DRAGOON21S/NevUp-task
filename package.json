@@ -5,13 +5,26 @@
   "type": "module",
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "start": "node dist/api/server.js",
+    "dev": "npm run build && node dist/api/server.js",
+    "worker": "node dist/worker/analyticsWorker.js",
+    "dev:worker": "npm run build && node dist/worker/analyticsWorker.js",
+    "loadtest:trades": "npm run build && node dist/loadtest/trades.js",
+    "loadtest:reads": "npm run build && node dist/loadtest/reads.js",
+    "loadtest:cleanup": "npm run build && node dist/loadtest/cleanup.js",
+    "test:integration": "npm run build && node dist/test/integration.js",
+    "demo:judge": "npm run build && node dist/test/judgeDemo.js",
+    "smoke:deploy": "npm run build && node dist/test/deploySmoke.js",
+    "k6:write": "k6 run k6/trades.js",
+    "k6:read": "k6 run k6/reads.js",
     "migrate": "npm run build && node dist/db/migrate.js",
     "seed": "npm run build && node dist/db/seed.js",
     "db:phase1": "npm run migrate && npm run seed"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
-    "pg": "^8.13.1"
+    "pg": "^8.13.1",
+    "redis": "^5.12.1"
   },
   "devDependencies": {
     "@types/node": "^22.10.5",

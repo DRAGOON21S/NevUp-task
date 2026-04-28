@@ -1,0 +1,25 @@
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: nevup_db
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    [cite_start]command: ["redis-server", "--appendonly", "yes"] # Persistence is key [cite: 134]
+    ports:
+      - "6379:6379"
+
+  api:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - .env
